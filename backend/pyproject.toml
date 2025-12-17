@@ -1,0 +1,79 @@
+[build-system]
+requires = [
+    "setuptools>=68",
+    "wheel>=0.42",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cattle-backend"
+version = "0.1.0"
+description = "Backend FastAPI para la plataforma de gestión ganadera"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Equipo Vacuno", email = "dev@vacuno.local" },
+]
+keywords = ["fastapi", "postgresql", "cattle", "microservices", "sync"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Framework :: FastAPI",
+    "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = [
+    "fastapi==0.110.2",
+    "uvicorn[standard]==0.29.0",
+    "sqlalchemy==2.0.30",
+    "psycopg2-binary==2.9.9",
+    "pydantic==2.7.1",
+    "python-jose[cryptography]==3.3.0",
+    "passlib[bcrypt]==1.7.4",
+    "python-multipart==0.0.9",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black==24.4.2",
+    "ruff==0.4.3",
+    "mypy==1.10.0",
+    "httpx==0.27.0",
+]
+
+[project.urls]
+homepage = "https://example.com/vacuno"
+repository = "https://example.com/vacuno/backend.git"
+documentation = "https://example.com/vacuno/docs"
+
+[tool.setuptools]
+package-dir = {"" = "app"}
+
+[tool.setuptools.packages.find]
+where = ["app"]
+exclude = ["tests"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+exclude = [".venv", "build", "dist"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+strict_optional = true
+no_implicit_optional = true
+pretty = true
+
+[tool.coverage.run]
+branch = true
+omit = [
+    "tests/*",
+]
+

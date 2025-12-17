@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: cattle_db
+      POSTGRES_USER: cattle_user
+      POSTGRES_PASSWORD: cattle_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://cattle_user:cattle_pass@postgres:5432/cattle_db
+      SECRET_KEY: dev-secret-key
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:

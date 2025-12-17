@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*.so
+.env
+.env.*
+.venv/
+poetry.lock
+pip-wheel-metadata/
+.DS_Store
+.idea/
+.vscode/
+pytest.cache/
+.mypy_cache/
+.coverage
+htmlcov/
